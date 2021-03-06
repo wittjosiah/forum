@@ -1,0 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input[type=checkbox]:checked ~ nav {
+  left: 0;
+}

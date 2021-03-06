@@ -1,0 +1,26 @@
+{
+  "name": "forum",
+  "version": "0.1.0",
+  "description": "A decentralized forum webapp using CTZN.",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon ./server.js -e ejs,js",
+    "tailwind": "pnpx tailwindcss-cli@latest build -o static/css/tailwind.css",
+    "tailwind-prod": "NODE_ENV=production pnpm run tailwind",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Josiah Witt <josiah@witt.life>",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "fastify": "^3.13.0",
+    "fastify-static": "^4.0.1",
+    "make-promises-safe": "^5.1.0",
+    "pino-pretty": "^4.6.0",
+    "point-of-view": "^4.14.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "standard": "^16.0.3"
+  }
+}
