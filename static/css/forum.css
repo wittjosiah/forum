@@ -7,3 +7,11 @@
 input[type=checkbox]:checked ~ nav {
   left: 0;
 }
+
+input[type=checkbox]:checked ~ .toggle {
+  display: initial;
+}
+
+input[type=checkbox]:checked ~ label .collapsed {
+  transform: rotate(90deg);
+}

@@ -1,0 +1,48 @@
+<div class="flex flex-wrap p-4 mt-4 border-b border-gray-200 relative">
+    <%- include('avatar-link', { profile: community, size: 20, imgClass: "mr-4" }) %>
+    <div class="w-5/6">
+        <a href="/<%= community.userId %>">
+            <h1 class="text-3xl font-bold"><%= community.value.displayName %></h1>
+            <p class="text-gray-500"><%= community.userId %></p>
+        </a>
+        <h2 class="text-xl"><%= community.value.description %></h2>
+    </div>
+
+    <% if (community.joined) { %>
+        <label
+            for="compose"
+            class="absolute right-2 top-2 cursor-pointer rounded-lg bg-gray-300 py-2 px-4 hover:bg-gray-400"
+        >
+            Create Post
+        </label>
+        <input type="checkbox" id="compose" class="hidden">
+        <form action="/post" method="POST" class="toggle hidden md:w-1/2 mx-auto mt-4">
+            <input type="hidden" name="communityId" value="<%= community.userId %>">
+            <input type="hidden" name="communityUrl" value="<%= community.dbUrl %>">
+            <p>Create a post in the <%= community.value.displayName %> community</p>
+            <textarea
+                name="text"
+                placeholder="Post Summary (256 character limit)"
+                class="w-full border rounded-lg p-2 my-2"
+            ></textarea>
+            <div>
+                <input type="checkbox" id="extend" class="hidden">
+                <label for="extend" class="block">
+                    <i class="fa fa-caret-right text-xl collapsed transition-all"></i>
+                    Extended Post Text (optional)
+                </label>
+                <textarea
+                    name="extendedText"
+                    placeholder="Expand on your thoughts here! (No character limit)"
+                    class="toggle hidden w-full border rounded-lg p-2 mt-2"
+                ></textarea>
+            </div>
+            <input type="submit" value="Submit" class="cursor-pointer rounded-lg bg-gray-300 py-2 px-4 hover:bg-gray-400">
+        </form>
+    <% } else if (community.joined === false) { %>
+        <form action="/join" method="POST" class="absolute right-2 top-2">
+            <input type="hidden" name="communityId" value="<%= community.userId %>">
+            <input type="submit" value="Join" class="cursor-pointer rounded-lg bg-gray-300 py-2 px-4 hover:bg-gray-400">
+        </form>    
+    <% } %>
+</div>

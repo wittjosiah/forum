@@ -2,11 +2,13 @@
     <h1 class="text-2xl p-4">Forum</h1>
     <nav class="">
       <ul>
-        <li><a href="#" class="block p-4 no-underline">Lorem</a></li>
-        <li><a href="#" class="block p-4 no-underline">Ipsum</a></li>
-        <li><a href="#" class="block p-4 no-underline">Dolor</a></li>
-        <li><a href="#" class="block p-4 no-underline">Sit</a></li>
-        <li><a href="#" class="block p-4 no-underline">Amet</a></li>
+        <li><a href="/" class="block p-4 no-underline">Home</a></li>
+        <% if (!session) { %>
+          <li><a href="/login" class="block p-4 no-underline">Login</a></li>
+        <% } else { %>
+          <li><a href="/profile" class="block p-4 no-underline">Profile</a></li>
+          <li><a href="/logout" class="block p-4 no-underline">Logout</a></li>
+        <% } %>
       </ul>
     </nav>
 </header>

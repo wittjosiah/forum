@@ -1,0 +1,13 @@
+<% let height, width %>
+<% switch (size) {
+    case 8: height = 'h-8'; width = 'h-8'; break;
+    case 10: height = 'h-10'; width = 'h-10'; break;
+    case 12: height = 'h-12'; width = 'h-12'; break;
+    case 20: height = 'h-20'; width = 'h-20'; break;
+    default: height = 'h-8'; width = 'h-8';
+} %>
+<img
+    src="<%= profile.avatarUrl %>"
+    alt="<%= profile.userId %>"
+    class="rounded-full border border-gray-200 overflow-hidden <%= height %> <%= width %> <%= imgClass %>"
+>

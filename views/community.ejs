@@ -1,0 +1,54 @@
+<%- include('community-header', { community }) %>
+<table class="w-full">
+    <thead class="bg-gray-200 hidden md:table-header-group">
+        <tr>
+            <td class="p-2">Topic</td>
+            <td class="p-2">Author</td>
+            <td class="p-2">Replies</td>
+            <td class="p-2">Posted</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% feed.forEach(function (post) { %>
+            <tr class="border-b md:hidden">
+                <td class="p-2 pb-8 relative">
+                    <a href="<%= post.url %>" class="flex items-center">
+                        <%- include('avatar', { profile: post.author, size: 10, imgClass: "mr-2 flex-none" }) %>
+                        <% if (post.value.text) { %>
+                            <p><%= post.value.text %></p>
+                        <% } else { %>
+                            <p class="text-gray-400 italic">Image Post</p>
+                        <% } %>
+                    </a>
+                    <div class="absolute right-2 bottom-2 text-sm text-gray-400">
+                        <span class="font-bold mr-2"><%= post.replyCount %> replies</span>
+                        <span><%= post.value.timeAgo %></span>
+                    </div>
+                </td>
+            </tr>
+            <tr class="border-b hidden md:table-row">
+                <td class="p-2 w-3/4">
+                    <a href="<%= post.url %>">
+                        <% if (post.value.text) { %>
+                            <p><%= post.value.text %></p>
+                        <% } else { %>
+                            <p class="text-gray-400 italic">Image Post</p>
+                        <% } %>
+                    </a>
+                </td>
+                <td class="p-2">
+                    <span title="<%= post.author.displayName %>">
+                        <%- include('avatar', { profile: post.author, size: 8, imgClass: "" }) %>
+                    </span>
+                </td>
+                <td class="p-2">
+                    <span><%= post.replyCount %></span>
+                </td>
+                <td class="p-2">
+                    <span><%= post.value.timeAgo %></span>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
+<%- include('paging') %>

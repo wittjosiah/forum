@@ -1,0 +1,53 @@
+<% comments.forEach(function (comment) { %>
+    <div class="max-w-2xl mx-auto my-4 flex relative">
+        <div class="bg-gray-100 md:rounded-lg w-full">
+            <div class="border-b border-gray-200 p-4 flex justify-between">
+                <a href="/<%= comment.author.userId %>" class="font-bold">
+                    <%- include('avatar', {
+                        profile: comment.author,
+                        size: 12,
+                        imgClass: "mr-2 float-left md:float-none md:absolute md:-left-14 md:top-1"
+                    }) %>
+                    <%= comment.author.displayName %>
+                </a>
+                <span class="text-sm text-gray-400"><%= comment.value.timeAgo %></span>
+            </div>
+            <div class="p-4">
+                <% parent = comment.value.reply.parent %>
+                <% if (parent) { %>
+                    <span class="text-sm text-gray-500 flex items-center">
+                        Replying to
+                        <img
+                            src="<%= parent.avatarUrl %>"
+                            alt="<%= parent.userId %>"
+                            class="rounded-full h-4 w-4 ml-2 mr-1"
+                        >
+                        <%= parent.displayName %>
+                    </span>
+                    <blockquote class="border-l-8 border-gray-400 text-gray-400 p-2 my-2">
+                        <%= parent.snippet %>
+                    </blockquote>
+                <% } %>
+                <p class="whitespace-pre-wrap"><%- comment.value.text %></p>
+            </div>
+
+            <div class="p-4 border-t border-gray-200">
+                <label for="reply-<%= comment.key %>" class="cursor-pointer rounded-lg text-gray-400 hover:border-gray-200">
+                    <i class="fa fa-reply"></i>
+                    Reply
+                </label>
+                <input type="checkbox" id="reply-<%= comment.key %>" class="hidden">
+                <form action="/comment" method="POST" class="hidden toggle">
+                    <input type="hidden" name="communityId" value="<%= community.userId %>">
+                    <input type="hidden" name="communityUrl" value="<%= community.dbUrl %>">
+                    <input type="hidden" name="rootDbUrl" value="<%= post.dbUrl %>">
+                    <input type="hidden" name="rootAuthorId" value="<%= post.author.userId %>">
+                    <input type="hidden" name="parentDbUrl" value="<%= comment.dbUrl %>">
+                    <input type="hidden" name="parentAuthorId" value="<%= comment.author.userId %>">
+                    <textarea class="w-full p-2 my-4 rounded-lg" placeholder="Write your reponse" name="text"></textarea>
+                    <input type="submit" value="Submit" class="cursor-pointer rounded-lg bg-gray-300 py-2 px-4 hover:bg-gray-400">
+                </form>
+            </div>
+        </div>
+    </div>
+<% }) %>

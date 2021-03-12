@@ -1,27 +1,28 @@
 require('make-promises-safe')
 const path = require('path')
+const { routes } = require('./api')
 
 const fastify = require('fastify')({
-  logger: {
-    prettyPrint: true
-  }
+  logger: true
 })
 
-fastify.register(require('fastify-static'), {
-  root: path.join(__dirname, 'static')
-})
-
-fastify.register(require('point-of-view'), {
-  engine: {
-    ejs: require('ejs')
-  },
-  root: path.join(__dirname, 'views'),
-  layout: 'layout.ejs'
-})
-
-fastify.get('/', async (request, reply) => {
-  return reply.view('index.ejs')
-})
+fastify
+  .register(require('fastify-formbody'))
+  .register(require('fastify-cookie'), {
+    secret: 'my-secret', // TODO
+    parseOptions: {}
+  })
+  .register(require('fastify-static'), {
+    root: path.join(__dirname, 'static')
+  })
+  .register(require('point-of-view'), {
+    engine: {
+      ejs: require('ejs')
+    },
+    root: path.join(__dirname, 'views'),
+    layout: 'layout.ejs'
+  })
+  .after(() => routes(fastify))
 
 const start = async () => {
   try {

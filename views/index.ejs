@@ -1,3 +1,27 @@
-<h1 class="text-3xl text-center my-2">
-    Welcome to Forum
-</h1>
+<% if (!session) { %>
+    <div class="mt-4 p-4 bg-gray-200 lg:rounded-lg">
+        <h1 class="text-2xl text-center my-2">
+            Welcome to Forum
+        </h1>
+        <h2 class="text-center">
+            An experimental, not yet named client for <a href="https://github.com/pfrazee/ctzn">CTZN</a>, a decentralized social network.
+            <a href="https://github.com/wittjosiah/forum" class="text-xs text-blue-600 hover:underline">[Source]</a>
+        </h2>
+    </div>
+<% } %>
+
+<div class="mb-4">
+    <% if (joinedCommunities.length > 0) { %>
+        <h3 class="p-4 text-xl font-bold">Your Communities</h3>
+    <% } %>
+    <% joinedCommunities.forEach(function (community) { %>
+        <%- include('community-card', { community: community }) %>
+    <% }) %>
+
+    <h3 class="p-4 text-xl font-bold">
+        <% if (session) { %>Other <% } %>Communities
+    </h3>
+    <% otherCommunities.forEach(function (community) { %>
+        <%- include('community-card', { community: community }) %>
+    <% }) %>
+</div>

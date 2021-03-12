@@ -1,16 +1,18 @@
-<header class="lg:hidden border-b border-gray-200 py-2 bg-white">
+<header class="lg:hidden fixed left-0 top-0 right-0 z-50 border-b border-gray-200 py-2 bg-white">
     <h1 class="align-middle text-center text-2xl">Forum</h1>
-    <label for="navmenu" class="w-8 h-8 fixed left-2.5 top-2.5">
+    <label for="navmenu" class="w-8 h-8 absolute left-2.5 top-2.5">
         <i class="fa fa-bars text-2xl"></i>
     </label>
     <input type="checkbox" id="navmenu" class="hidden">
     <nav class="transition-all fixed -left-48 top-12 w-48 h-full border-r border-t border-gray-200 bg-white">
       <ul>
-        <li><a href="#" class="block p-4 no-underline">Lorem</a></li>
-        <li><a href="#" class="block p-4 no-underline">Ipsum</a></li>
-        <li><a href="#" class="block p-4 no-underline">Dolor</a></li>
-        <li><a href="#" class="block p-4 no-underline">Sit</a></li>
-        <li><a href="#" class="block p-4 no-underline">Amet</a></li>
+        <li><a href="/" class="block p-4 no-underline">Home</a></li>
+        <% if (!session) { %>
+          <li><a href="/login" class="block p-4 no-underline">Login</a></li>
+        <% } else { %>
+          <li><a href="/profile" class="block p-4 no-underline">Profile</a></li>
+          <li><a href="/logout" class="block p-4 no-underline">Logout</a></li>
+        <% } %>
       </ul>
     </nav>
 </header>

@@ -1,0 +1,14 @@
+<a href="/<%= community.userId %>">
+    <div class="border-b">
+        <div
+            class="border-solid border-l-8 p-4 flex"
+            style="border-color:<%= community.colorHash %>;"
+        >
+            <%- include('avatar', { profile: community, size: 12, imgClass: "mr-2 flex-none" }) %>
+            <div>
+                <h3 class="text-lg"><%= community.value.displayName %></h3>
+                <span class="text-gray-500"><%= community.value.description %></span>
+            </div>
+        </div>
+    </div>
+</a>

@@ -1,0 +1,12 @@
+<div class="flex p-4 mt-4">
+    <%- include('avatar-link', { profile, size: 20, imgClass: "mr-4" }) %>
+    <div>
+        <a href="/<%= profile.userId %>">
+            <h1 class="text-3xl font-bold"><%= profile.value.displayName %></h1>
+            <p class="text-gray-500"><%= profile.userId %></p>
+        </a>
+        <h2 class="text-xl"><%= profile.value.description %></h2>
+    </div>
+</div>
+
+<p>TODO</p>
