@@ -6,13 +6,14 @@
   "scripts": {
     "start": "nodemon ./server.js -e ejs,js",
     "tailwind": "pnpx tailwindcss-cli@latest build -o static/css/tailwind.css",
-    "tailwind-prod": "NODE_ENV=production pnpm run tailwind",
+    "tailwind-prod": "NODE_ENV=production npx tailwindcss-cli@latest build -o static/css/tailwind.cs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Josiah Witt <josiah@witt.life>",
   "license": "MIT",
   "dependencies": {
     "color-hash": "^1.0.3",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "fastify": "^3.13.0",
     "fastify-cookie": "^5.1.0",
